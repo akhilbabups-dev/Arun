@@ -16,6 +16,9 @@ export const header = () => {
                         <li>
                             <Link to='/registration'>Register</Link>
                         </li>
+                        <li>
+                            <Link to='/Login'>Login</Link>
+                        </li>
                     </ul>
                 </div>
             </div>
