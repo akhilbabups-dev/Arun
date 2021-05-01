@@ -1,8 +1,11 @@
 import React from 'react';
 import './styles.scss';
 import Logo from './../../Assets/ironman.png';
-import {Link} from 'react-router-dom'
-export const header = () => {
+import {Link} from 'react-router-dom';
+import {auth} from './../../Firebase/Utils';
+
+export const Header = (props) => {
+    const{currentUser}=props
     return (
         <header className='header'>
             <div className='wrap'>
@@ -12,17 +15,32 @@ export const header = () => {
                     </Link>
                 </div>
                 <div className='callToAction'>
-                    <ul>
-                        <li>
-                            <Link to='/registration'>Register</Link>
-                        </li>
-                        <li>
-                            <Link to='/Login'>Login</Link>
-                        </li>
-                    </ul>
+                    {currentUser&&(
+                        <ul>
+                            <li>
+                                <span onClick={()=>auth.signOut()}>
+                                    log out
+                                </span>
+                            </li>
+                        </ul>
+                    )}
+                    {!currentUser&&(
+                        <ul>
+                            <li>
+                                <Link to='/registration'>Register</Link>
+                            </li>
+                            <li>
+                                <Link to='/Login'>Login</Link>
+                            </li>
+                        </ul>
+                    )}
+                    
                 </div>
             </div>
         </header>
     )
 }
-export default header;
+Header.defaultProps={
+    currentUser: null
+}
+export default Header;

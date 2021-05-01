@@ -4,7 +4,7 @@ import Header from './../component/header'
 const HomePageLayout = (props) => {
     return (
         <div className='fullheight'>
-            <Header/>
+            <Header {...props}/>
             <div className='main'>
                 {props.children}
             </div>
